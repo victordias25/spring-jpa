@@ -1,0 +1,23 @@
+
+version: "3.1"
+
+services:
+
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
+  redis-compose:
+    image: redis
+    command: redis-server --requirepass 123456 --appendonly yes
+    hostname: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - /home/duducp/Redis:/var/lib/postgresql/data
