@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 //Entidade Produto
 @Entity
@@ -28,6 +30,6 @@ public class Produto {
     @ManyToMany
     @JoinTable(name = "produto_pedido",
             joinColumns = {@JoinColumn(name="produto_id",referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name="cliente_id",referencedColumnName = "id")})
-    private List<Pedido> pedidos = new ArrayList<Pedido>();
+            inverseJoinColumns = {@JoinColumn(name="pedido_id",referencedColumnName = "id")})
+    private Set<Pedido> pedidos = new HashSet<>();
 }

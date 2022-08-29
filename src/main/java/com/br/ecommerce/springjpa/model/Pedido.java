@@ -4,7 +4,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,7 +19,7 @@ public class Pedido {
     private Long id;
 
     @ManyToMany(fetch = FetchType.EAGER,mappedBy = "pedidos")
-    private List<Produto> produtos;
+    private Set<Produto> produtos = new HashSet<>();
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(
