@@ -27,9 +27,6 @@ public class Produto {
 
     private BigDecimal valor;
 
-    @ManyToMany
-    @JoinTable(name = "produto_pedido",
-            joinColumns = {@JoinColumn(name="produto_id",referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name="pedido_id",referencedColumnName = "id")})
+    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "produtos", cascade = CascadeType.ALL)
     private Set<Pedido> pedidos = new HashSet<>();
 }

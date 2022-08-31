@@ -2,6 +2,7 @@ package com.br.ecommerce.springjpa.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -18,7 +19,10 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "pedidos")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "pedido_produto9",
+            joinColumns = {@JoinColumn(name="pedido_id",referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name="produto_id",referencedColumnName = "id")})
     private Set<Produto> produtos = new HashSet<>();
 
     @OneToOne(fetch = FetchType.LAZY)
